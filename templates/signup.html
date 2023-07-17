@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MakersBnB</title>
+
+        <h1>New User</h1>
+        <!-- This creates a form that will submit to POST /user -->
+        <form action="/user" method="post">
+
+    <!-- We check to see if there are any errors from a previous submission -->
+    {% if errors %}
+    <!-- If so, we show them. -->
+    <p class="t-errors">
+        There were errors with your submission: {{ errors }}
+    </p>
+    {% endif %}
+    <p>
+        <!-- These `label` tags are important for accessibility -->
+        <label for="name">User Name</label>
+
+        <!-- The `type` attribute says what kind of field this is -->
+        <!-- The `name` attribute says what parameter name should be sent to the server -->
+        <!-- The `id` field here is used to link it to the `for` tag in the label -->
+        <input type="text" name="name" id="name">
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password">
+      </p>
+      <p>
+        <!-- `type` is submit here, to indicate it is a button -->
+        <!-- `value` is used as the button's text -->
+        <input type="submit" value="Create User">
+    </head>
+    <body>
+        <p>This is the sign up page</h1>
+    </body>
+</html>
+
+
+
