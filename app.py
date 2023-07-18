@@ -7,6 +7,14 @@ app = Flask(__name__)
 
 # == Your Routes Here ==
 
+# GET /homepage
+# Returns the homepage once the user has logged in
+# Has the option to book or list a space
+
+@app.route('/homepage')
+def get_homepage_once_logged_in():
+    return render_template('homepage.html')
+
 # GET /index
 # Returns the homepage
 # Try it:
