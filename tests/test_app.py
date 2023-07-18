@@ -25,3 +25,9 @@ def test_load_homepage(page, test_web_address):
     expect(heading).to_have_text('What would you like to do?')
     link_to_book = page.locator('.t-book')
     expect(link_to_book).to_have_text("Book a space")
+
+# def test_get_sign_up(page, test_web_address):
+#     # We load a virtual browser and navigate to the /index page
+#     page.goto(f"http://{test_web_address}/signup")
+#     create_tag = page.locator("t-create_button")
+#     expect(create_tag).to_have_value("Create User")
