@@ -2,6 +2,9 @@ from playwright.sync_api import Page, expect
 
 # Tests for your routes go here
 
+# Homepage GET /home
+
+
 """
 We can render the index page
 """
@@ -13,7 +16,10 @@ def test_get_index(page, test_web_address):
     strong_tag = page.locator("p")
 
     # We assert that it has the text "This is the homepage."
-    expect(strong_tag).to_have_text("This is the homepage.")
+
+    expect(strong_tag).to_have_text("Welcome to MakersBnB.")
+    
+
 
 
 """
@@ -31,3 +37,4 @@ def test_load_homepage(page, test_web_address):
 #     page.goto(f"http://{test_web_address}/signup")
 #     create_tag = page.locator("t-create_button")
 #     expect(create_tag).to_have_value("Create User")
+

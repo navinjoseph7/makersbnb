@@ -19,14 +19,18 @@ def get_homepage_once_logged_in():
 # Returns the homepage
 # Try it:
 #   ; open http://localhost:5000/index
+
+
 @app.route('/index', methods=['GET'])
 def get_index():
     return render_template('index.html')
 
 
+
 @app.route('/signup', methods=['GET'])
 def get_signup():
     return render_template('signup.html')
+
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
