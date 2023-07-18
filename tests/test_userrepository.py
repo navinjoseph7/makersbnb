@@ -1,66 +1,34 @@
 from lib.userrepository import UserRepository
 from lib.user import User
 
-"""
-When we call ArtistRepository#all
-We get a list of Artist objects reflecting the seed data.
-"""
-def test_get_all_user_records(db_connection): # See conftest.py to learn what `db_connection` is.
-    db_connection.seed("seeds/record_store.sql") # Seed our database with some test data
-    repository = ArtistRepository(db_connection) # Create a new ArtistRepository
+def test_all(db_connection): # See conftest.py to learn what `db_connection` is.
+    db_connection.seed("seeds/database_connection.sql") # Seed our database with some test data
+    repository = UserRepository(db_connection) # Create a new ArtistRepository
 
-    artists = repository.all() # Get all artists
+    users = repository.all() # Get all artists
 
     # Assert on the results
-    assert artists == [
-        Artist(1, "Pixies", "Rock"),
-        Artist(2, "ABBA", "Pop"),
-        Artist(3, "Taylor Swift", "Pop"),
-        Artist(4, "Nina Simone", "Jazz"),
-    ]
+    assert users == [User(1, "Test Name", "testemail@mmm","pass")]
 
-"""
-When we call ArtistRepository#find
-We get a single Artist object reflecting the seed data.
-"""
-def test_get_single_record(db_connection):
-    db_connection.seed("seeds/record_store.sql")
-    repository = ArtistRepository(db_connection)
+def test_create_user(db_connection):
+    db_connection.seed("seeds/database_connection.sql")
+    repository = UserRepository(db_connection)
 
-    artist = repository.find(3)
-    assert artist == Artist(3, "Taylor Swift", "Pop")
-
-"""
-When we call ArtistRepository#create
-We get a new record in the database.
-"""
-def test_create_record(db_connection):
-    db_connection.seed("seeds/record_store.sql")
-    repository = ArtistRepository(db_connection)
-
-    repository.create(Artist(None, "The Beatles", "Rock"))
-
+    repository.create(User(None, "Navin Joseph", "navinmanisseril7@gmail.com","nopassword"))
     result = repository.all()
     assert result == [
-        Artist(1, "Pixies", "Rock"),
-        Artist(2, "ABBA", "Pop"),
-        Artist(3, "Taylor Swift", "Pop"),
-        Artist(4, "Nina Simone", "Jazz"),
-        Artist(5, "The Beatles", "Rock"),
+        User(1, "Test Name", "testemail@mmm","pass"),
+        User(2, "Navin Joseph", "navinmanisseril7@gmail.com","nopassword")
     ]
+
+def test_validate_user(db_connection):
+    db_connection.seed("seeds/database_connection.sql")
+    repository = UserRepository(db_connection)
+    result =repository.validate_user("testemail@mmm","pass")
+    assert result == True
 
 """
 When we call ArtistRepository#delete
 We remove a record from the database.
 """
-def test_delete_record(db_connection):
-    db_connection.seed("seeds/record_store.sql")
-    repository = ArtistRepository(db_connection)
-    repository.delete(3) # Apologies to Taylor Swift fans
 
-    result = repository.all()
-    assert result == [
-        Artist(1, "Pixies", "Rock"),
-        Artist(2, "ABBA", "Pop"),
-        Artist(4, "Nina Simone", "Jazz"),
-    ]
