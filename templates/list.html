@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List a Space</title>
+    </head>
+    <body>
+        <h1>List a New Space</h1>
+        <form action="/list" methods="post">
+            <p class="t-space-name">
+                <label for="spaceName">Space Name</label>
+                <input type="text" name="spaceName" id="spaceName">
+            </p>
+            <p>
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description">
+            </p>
+            <p>
+                <label for="pricePerNight">Price Per Night</label>
+                <input type="number" name="pricePerNight" id="pricePerNight">
+            </p>
+            <h3>Dates Available</h3>
+            <p>
+                <label for="startDate">Start Date</label>
+                <input type="date" name="startDate" id="startDate">
+            </p>
+            <p>
+                <label for="endDate">End Date</label>
+                <input type="date" name="endDate" id="endDate">
+            </p>
+
+            <p>
+                <input type="submit" value="Confirm new Space">
+            </p>
+        </form>
+    </body>
+</html>
