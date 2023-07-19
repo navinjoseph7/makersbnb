@@ -14,30 +14,35 @@
         There were errors with your submission: {{ errors }}
     </p>
     {% endif %}
-    <p>
+      <p>
         <!-- These `label` tags are important for accessibility -->
-        <label for="name">User Name</label>
+        <label for="name"> Name</label>
 
         <!-- The `type` attribute says what kind of field this is -->
         <!-- The `name` attribute says what parameter name should be sent to the server -->
         <!-- The `id` field here is used to link it to the `for` tag in the label -->
         <input type="text" name="name" id="name">
       </p>
-      <p>
+      <!--<p>
         <label for="password">Password</label>
         <input type="text" name="password" id="password">
-      </p>
+      </p>-->
       <p>
         <label for="email">Email</label>
         <input type="text" name="email" id="email">
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password">
       </p>
       <p class="t-create_button" >
         <!-- `type` is submit here, to indicate it is a button -->
         <!-- `value` is used as the button's text -->
         <input type="submit" value="Create User">
+      </p>
     </head>
     <body>
-        <p>This is the sign up page</h1>
+        <p>This is the sign up page</p>
     </body>
 </html>
 

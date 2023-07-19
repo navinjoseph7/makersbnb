@@ -49,8 +49,8 @@ def post_signup():
     user = User(
         None, 
         request.form['name'],
-        request.form['password'],
-        request.form['email']
+        request.form['email'],
+        request.form['password']
     )
     repository = UserRepository(connection)
     result = repository.create(user)
