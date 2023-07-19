@@ -14,7 +14,13 @@ def test_create_user(db_connection):
     db_connection.seed("seeds/makersbnb.sql")
     repository = UserRepository(db_connection)
 
-    repository.create(User(None, "Navin Joseph", "navinmanisseril7@gmail.com","nopassword"))
+<<<<<<< Updated upstream
+    create_result=repository.create(User(None, "Navin Joseph", "navinmanisseril7@gmail.com","nopassword"))
+    assert create_result == True
+=======
+    r=repository.create(User(None, "Navin Joseph", "navinmanisseril7@gmail.com","nopassword"))
+    assert r == True
+>>>>>>> Stashed changes
     result = repository.all()
     assert result == [
         User(1, "Test Name", "testemail@mmm","pass"),

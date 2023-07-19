@@ -39,13 +39,25 @@ def post_index():
         return redirect("/index")
 
 
-
-
 @app.route('/signup', methods=['GET'])
 def get_signup():
-
     return render_template('signup.html')
 
+@app.route('/signup', methods=['POST'])
+def post_signup():
+    connection = get_flask_database_connection()
+    user = User(
+        None, 
+        request.form['name'],
+        request.form['email'],
+        request.form['password']
+    )
+    repository = UserRepository(connection)
+    result = repository.create(user)
+    if result ==True:
+        return render_template('homepage.html')
+    else:
+        return redirect("/signup")
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
