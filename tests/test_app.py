@@ -47,3 +47,15 @@ def test_load_homepage(page, test_web_address):
 #     create_tag = page.locator("t-create_button")
 #     expect(create_tag).to_have_value("Create User")
 
+def test_post_signup(page, test_web_address, db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f"http://{test_web_address}/signup")
+    page.fill('input[name=name]',"Hazel")
+    page.fill('input[name=password]',"1234")
+    page.fill('input[name=email]',"hazel@1234")
+    page.click('text=Create User')
+    heading = page.locator('h1')
+    expect(heading).to_have_text('What would you like to do?')
+    link_to_book = page.locator('.t-book')
+    expect(link_to_book).to_have_text("Book a space")
+
