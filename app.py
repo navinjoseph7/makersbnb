@@ -53,8 +53,11 @@ def post_signup():
         request.form['email']
     )
     repository = UserRepository(connection)
-    repository.create(user)
-    return render_template('homepage.html')
+    result = repository.create(user)
+    if result ==True:
+        return render_template('homepage.html')
+    else:
+        return redirect("/signup")
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
