@@ -18,7 +18,7 @@ class UserRepository:
     def create(self, user):
         self._connection.execute('INSERT INTO users (name, email, password) VALUES (%s, %s, %s)', [
                                 user.name, user.email, user.password])
-        return None
+        return True
     
     def validate_user(self,email,password):
         rows = self._connection.execute('SELECT * from users WHERE email = %s',[email])
