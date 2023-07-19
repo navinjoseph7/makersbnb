@@ -13,8 +13,8 @@ DROP TABLE IF EXISTS spaces;
 CREATE SEQUENCE IF NOT EXISTS users_id_seq;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    name text,
-    email text,
+    name text NOT NULL,
+    email text NOT NULL,
     password text
 );
 
