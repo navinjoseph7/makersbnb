@@ -1,0 +1,15 @@
+<html>
+  <head></head>
+  <body>
+    <h1>SPACES</h1>
+    {% for space in spaces %}
+    
+    <div>
+      Space Name: <a href="/spaces/{{space.id}}">{{space.title}}</a> Released: {{album.release_year}}
+    </div>
+    
+    {% endfor %}
+
+    <!-- ... -->
+  </body>
+</html>
