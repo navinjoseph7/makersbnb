@@ -25,6 +25,7 @@ def test_creating_bookigns(db_connection):
 When we call @all_confirmed we can see the all confirmed bookings 
 """
 
+
 def test_all_confirmed_bookings(db_connection):
     db_connection.seed('seeds/makersbnb.sql')
     repository = BookingsRepository(db_connection)
@@ -41,6 +42,7 @@ def test_all_requested_bookings(db_connection):
     assert repository.list_all_requested() == [
         Booking(3, 1, 'Sunny hut in South', date(2023, 3, 6), 'Requested')
     ]
+
 
 
 """
