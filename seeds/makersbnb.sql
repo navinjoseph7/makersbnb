@@ -5,8 +5,8 @@
 
 -- First, we must delete (drop) all our tables
 DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS spaces;
-DROP TABLE IF EXISTS bookings;
+DROP TABLE IF EXISTS spaces CASCADE;
+DROP TABLE IF EXISTS bookings CASCADE;
 
 
 -- Then, we recreate them
@@ -25,8 +25,8 @@ CREATE TABLE spaces (
     space_name text,
     description text,
     price_per_night integer,
-    availibility_start_date date,
-    availibility_end_date date,
+    availability_start_date date,
+    availability_end_date date,
     owner_user_id integer,
     constraint fk_user FOREIGN KEY(owner_user_id) references users(id) on delete cascade
 );
@@ -45,13 +45,13 @@ CREATE TABLE bookings (
 
 
 INSERT INTO users(name,email,password) VALUES ('Test Name', 'testemail@mmm', 'pass');
-INSERT INTO spaces(space_name, description,price_per_night,availibility_start_date,availibility_end_date, owner_user_id) 
+INSERT INTO spaces(space_name, description,price_per_night,availability_start_date,availability_end_date, owner_user_id) 
 VALUES ('Cornwall Beach Hut', 'Sunny hut on coast', 85, TO_DATE('01/06/23', 'DD/MM/YY'), TO_DATE('01/07/23', 'DD/MM/YY'), 1);
 
-INSERT INTO spaces(space_name, description,price_per_night,availibility_start_date,availibility_end_date, owner_user_id) 
+INSERT INTO spaces(space_name, description,price_per_night,availability_start_date,availability_end_date, owner_user_id) 
 VALUES ('Norfolk Beach Hut', 'Sunny hut in North East', 85, TO_DATE('01/06/23', 'DD/MM/YY'), TO_DATE('01/07/23', 'DD/MM/YY'), 1);
 
-INSERT INTO spaces(space_name, description,price_per_night,availibility_start_date,availibility_end_date, owner_user_id) 
+INSERT INTO spaces(space_name, description,price_per_night,availability_start_date,availability_end_date, owner_user_id) 
 VALUES ('Suffolk Beach Hut', 'Sunny hut in South', 85, TO_DATE('01/06/23', 'DD/MM/YY'), TO_DATE('01/07/23', 'DD/MM/YY'), 1);
 
 

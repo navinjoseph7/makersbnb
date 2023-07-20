@@ -10,8 +10,8 @@ def test_create_space_with_all_fields():
     assert space.name == "Cornwall Beach Hut"
     assert space.description == "Sunny beach hut for two near the coast"
     assert space.price_per_night == "85.00"
-    assert space.availibility_start_date == '01/06/23'
-    assert space.availibility_end_date == '01/07/23'
+    assert space.availability_start_date == '01/06/23'
+    assert space.availability_end_date == '01/07/23'
 
 """
 When I created two spaces with the same details, they are equal
