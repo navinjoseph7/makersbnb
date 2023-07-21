@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, render_template,redirect,session
 from lib.database_connection import get_flask_database_connection
+
 from lib.user import User
 from lib.userrepository import UserRepository
 from lib.space import Space
@@ -87,8 +88,8 @@ def post_list_a_space():
     repository = SpaceRepository(connection)
     result = repository.create(space)
     if result == True:
-        return render_template('homepage.html')
-    
+      return redirect(f"/spaces/{space.id}")
+
 @app.route('/bookings_and_request', methods=['GET'])
 def load_bookings_and_requests():
     return render_template('bookings_and_request.html')
@@ -102,14 +103,21 @@ def get_all_bookings_and_requests():
     requests = bookings_repo.list_all_requested()
     return render_template('bookings_and_request.html', bookings=bookings, requests=requests)
 
+        
+    
+@app.route('/spaces')
+def get_all_spaces():
+    connection = get_flask_database_connection()
+    repo = SpaceRepository(connection)
+    spaces =repo.list_all()
+    start_date = request.args.get('startDate')
+    end_date = request.args.get('endDate')
+    return render_template('spaces.html', spaces = spaces ,start_date=start_date, end_date=end_date)
 
 
 
-#@app.route('/list', methods=['GET'])
-#def get_list():
-    #connection = get_flask_database_connection()
-    #repository = SpaceRepository(connection)
-    #spaces = repository.list_all
+
+
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
 # if started in test mode.

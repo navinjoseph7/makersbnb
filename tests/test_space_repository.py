@@ -46,5 +46,5 @@ def test_list_all_spaces(db_connection):
 def test_space_create(db_connection):
         db_connection.seed("seeds/makersbnb.sql")
         repo = SpaceRepository(db_connection)
-        result = repo.create(Space(None,"Whitechapel","London",60,date.fromisoformat('2023-06-01'),date.fromisoformat('2023-07-01'),2))
+        result = repo.create(Space(None,"Whitechapel","London",60,date.fromisoformat('2023-06-01'),date.fromisoformat('2023-07-01'),1))
         assert result == True
