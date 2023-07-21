@@ -6,6 +6,7 @@ from lib.user import User
 from lib.userrepository import UserRepository
 from lib.space import Space
 from lib.space_repository import SpaceRepository
+from lib.bookings_repository import BookingsRepository
 
 
 # Create a new Flask app
@@ -87,7 +88,22 @@ def post_list_a_space():
     repository = SpaceRepository(connection)
     result = repository.create(space)
     if result == True:
-        return redirect(f"/spaces/{space.id}")
+      return redirect(f"/spaces/{space.id}")
+
+@app.route('/bookings_and_request', methods=['GET'])
+def load_bookings_and_requests():
+    return render_template('bookings_and_request.html')
+        
+@app.route('/bookings_and_requests')
+def get_all_bookings_and_requests():
+    connection = get_flask_database_connection()
+    bookings_repo = BookingsRepository(connection)
+    bookings = bookings_repo.list_all_booked()
+    print("%%%%%%%%%%", bookings)
+    requests = bookings_repo.list_all_requested()
+    return render_template('bookings_and_request.html', bookings=bookings, requests=requests)
+
+        
     
 @app.route('/spaces')
 def get_all_spaces():
@@ -101,8 +117,10 @@ def get_all_spaces():
 
 
 
+
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
 # if started in test mode.
+
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
