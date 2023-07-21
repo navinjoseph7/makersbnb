@@ -79,6 +79,29 @@ def test_post_list_a_space(page, test_web_address, db_connection):
     expect(link_to_book).to_have_text("Book a space")
 
 
+def test_load_bookings_and_requests_page(page, test_web_address):
+    page.goto(f"http://{test_web_address}/bookings_and_request")
+    bookings_heading = page.locator(".t-my-bookings")
+    expect(bookings_heading).to_have_text("My Bookings")
+
+    requests_heading = page.locator(".t-my-requests")
+    expect(requests_heading).to_have_text("My Requests")
+
+# def test_see_bookings_and_requests(page, test_web_address, db_connection):
+#     db_connection.seed('seeds/makersbnb.sql')
+#     page.goto(f"http://{test_web_address}/bookings_and_request")
+#     bookings = page.locator('.t-booking-details')
+ 
+#     expect(bookings).to_have_text([ 
+#         "Sunny hut in North East, 02/06/23"
+#     ])
+
+#     requests = page.locator('.t-requests-details')
+#     expect(requests).to_have_text([ 
+#         "Sunny hut in South, 03/06/23"
+#     ])
+
+
 #def test_load_all_spaces(page, test_web_address, db_connection):
    # db_connection.seed('seeds/makersbnb.sql')
     #page.goto(f"http://{test_web_address}/spaces")

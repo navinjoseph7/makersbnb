@@ -10,18 +10,17 @@ class BookingsRepository:
             [booking.space_id, booking.booked_user_id, booking.name, booking.date_booked, booking.status])
         booking.id =rows[0]['id']
         return booking
-
     
     def list_all_booked(self):
-        status = 'Confirmed'
-        rows = self._connection.execute('SELECT * FROM bookings WHERE status = %s', [status])
+        # status = 'Confirmed'
+        rows = self._connection.execute('SELECT * FROM bookings WHERE status = %s', ['Confirmed'])
         print(rows)
         return [Booking(row['space_id'], row['booked_user_id'], row['space_name'], row['date_booked'], row['status']) for row in rows]
     
     
     def list_all_requested(self):
-        status = 'Requested'
-        rows = self._connection.execute('SELECT * FROM bookings WHERE status = %s', [status])
+        # status = 'Requested'
+        rows = self._connection.execute('SELECT * FROM bookings WHERE status = %s', ['Requested'])
         return [Booking(row['space_id'], row['booked_user_id'], row['space_name'], row['date_booked'], row['status']) for row in rows]
     
     def find(self, booking_id):

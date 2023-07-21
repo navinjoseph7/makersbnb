@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MakersBnB</title>
+    <meta charset="'utf-8">
+  </head>
+  <body>
+    <h1>MakersBnB</h1>
+    <div>
+    <h2 class="t-my-bookings">My Bookings</h2>
+    <ul>
+      {% for booking in bookings %}
+        <li class="t-booking-details">{{booking.space_name}}, {{booking.date_booked}}</li>
+      {% endfor %}
+    </ul>
+    </div>
+
+    <div>
+        <h2 class="t-my-requests">My Requests</h2>
+        <ul>
+          {% for request in requests %}
+            <li>
+              <p class="t-requests-details">{{request.space_name}}, {{request.date_booked}}</p>
+            </li>
+          {% endfor %}
+        </ul>
+        </div>
+  </body>
+</html>
