@@ -1,12 +1,24 @@
-<html>
-  <head></head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ALL SPACES</title>
+  </head>
   <body>
-    <h1>SPACES</h1>
-    {% for space in spaces %}
+    <h1>Spaces</h1>
+  {% for space in spaces %}
+    <ul>
+    <h2>
+    Space Name: <a href="/spaces/{{space.id}}">{{space.space_name}}</a> </h2>
     
-    <div>
-      Space Name: <a href="/spaces/{{space.id}}">{{space.title}}</a> Released: {{album.release_year}}
-    </div>
+    <br>Descrition: {{space.description}}
+    <br>Price per night: {{space.price_per_night}}
+    <br>Start Date: {{space.availability_start_date}}
+    <b>End Date: {{space.availability_end_date}}
+    
+  
+  
+  </ul>
+  
     
     {% endfor %}
 
