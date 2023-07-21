@@ -22,7 +22,6 @@ class BookingsRepository:
     def list_all_requested(self):
         status = 'Requested'
         rows = self._connection.execute('SELECT * FROM bookings WHERE status = %s', [status])
-        print(rows)
         return [Booking(row['space_id'], row['booked_user_id'], row['space_name'], row['date_booked'], row['status']) for row in rows]
     
     def find(self, booking_id):
@@ -32,28 +31,19 @@ class BookingsRepository:
         return Booking(row['space_id'], row['booked_user_id'], row['space_name'], row['date_booked'], row['status'])
     
     def request_bookings(self, booking_id, date_booked):
-        date_available = self._connection.execute('SELECT EXISTS(SELECT 1 FROM bookings WHERE id = %s and date_booked = %s)', [booking_id, date_booked])
-        if date_available[0]['exists'] == True:
+        date_requested = self._connection.execute('SELECT EXISTS(SELECT 1 FROM bookings WHERE id = %s and date_booked = %s and status = %s)', [booking_id, date_booked, 'Confirmed'])
+        if date_requested[0]['exists'] == True:
             return "Sorry that date is not available"
         else:
-            self._connection.execute('UPDATE bookings SET status = %s WHERE id = %s', ['Requested', booking_id])
+            self._connection.execute('UPDATE bookings SET status = %s, date_booked = %s WHERE id = %s', ['Requested', date_booked, booking_id])
+
+    def confirm_booking(self, booking_id, date_booked):
+        date_requested = self._connection.execute('SELECT EXISTS(SELECT 1 FROM bookings WHERE id = %s and date_booked = %s and status = %s)', [booking_id, date_booked, 'Confirmed'])
+        if date_requested[0]['exists'] == True:
+            return "Sorry that date is not available"
+        else:
+            self._connection.execute('UPDATE bookings SET status = %s, date_booked = %s WHERE id = %s', ['Confirmed', date_booked, booking_id])
+
+    
 
                 
-
-#     list_all_requested():
-#         #parameters: None
-#         # returns list of all requested bookings
-
-#     request_booking():
-#         #parameters: Space
-#         #returns: Nothing
-#         #side-effects: changes status in Bookings table to requested
-
-#     confirm_booking():
-#         #parameters: Space
-#         #returns: Nothing
-#         #side-effects: Changes status in Bookings table to confirmed
-#                     #  Adds the date booked to date_booked column
-
-
-# SELECT EXISTS(SELECT 1 FROM table_name WHERE id = %s and date_booked = %s), [booking_id, date_booked]
