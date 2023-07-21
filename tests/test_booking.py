@@ -32,4 +32,3 @@ def test_formatting():
     booking = Booking(1, 1, "Cornwall Beach Hut", '02/06/23')
     assert str(booking) == 'Booking(1, 1, Cornwall Beach Hut, 02/06/23, Available)'
 
-   

@@ -57,6 +57,6 @@ INSERT INTO spaces(space_name, description,price_per_night,availability_start_da
 VALUES ('Suffolk Beach Hut', 'Sunny hut in South', 85, TO_DATE('01/06/23', 'DD/MM/YY'), TO_DATE('01/07/23', 'DD/MM/YY'), 1);
 
 
-INSERT INTO bookings(space_id, booked_user_id, space_name, date_booked, status) VALUES (1, 1, 'Sunny hut on coast', '01/06/23', 'Available');
+INSERT INTO bookings(space_id, booked_user_id, space_name, date_booked, status) VALUES (1, 1, 'Sunny hut on coast', NULL, 'Available');
 INSERT INTO bookings(space_id, booked_user_id, space_name, date_booked, status) VALUES (2, 1, 'Sunny hut in North East', '02/06/23', 'Confirmed');
 INSERT INTO bookings(space_id, booked_user_id, space_name, date_booked, status) VALUES (3, 1, 'Sunny hut in South', '03/06/23', 'Requested'); 
